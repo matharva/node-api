@@ -1,4 +1,5 @@
-const AWS = require("aws-sdk");
+var XRay = require("aws-xray-sdk");
+var AWS = XRay.captureAWS(require("aws-sdk"));
 
 require("dotenv").config();
 

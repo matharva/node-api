@@ -3,11 +3,11 @@ const PORT = process.env.PORT || 8000;
 const app = express();
 
 var XRay = require("aws-xray-sdk");
-var AWSXRay = XRay.captureAWS(require("aws-sdk"));
+var AWS = XRay.captureAWS(require("aws-sdk"));
 
-app.use(AWSXRay.express.openSegment("myfrontend"));
+app.use(XRay.express.openSegment("myfrontend"));
 
-XRay.config([XRay.plugins.EC2Plugin, XRay.plugins.ElasticBeanstalkPlugin]);
+XRay.config([XRay.plugins.EC2Plugin]);
 XRay.middleware.setSamplingRules("sampling-rules.json");
 XRay.middleware.enableDynamicNaming();
 
@@ -92,7 +92,7 @@ app.delete("/data/:id", async (req, res) => {
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);
-app.use(AWSXRay.express.closeSegment());
+app.use(XRay.express.closeSegment());
 
 const start = async () => {
   try {
