@@ -2,8 +2,14 @@ const express = require("express");
 const PORT = process.env.PORT || 8000;
 const app = express();
 
-var AWSXRay = require("aws-xray-sdk");
-app.use(AWSXRay.express.openSegment("MyApp"));
+var XRay = require("aws-xray-sdk");
+var AWSXRay = XRay.captureAWS(require("aws-sdk"));
+
+app.use(AWSXRay.express.openSegment("myfrontend"));
+
+XRay.config([XRay.plugins.EC2Plugin, XRay.plugins.ElasticBeanstalkPlugin]);
+XRay.middleware.setSamplingRules("sampling-rules.json");
+XRay.middleware.enableDynamicNaming();
 
 require("dotenv").config();
 const notFound = require("./middleware/not-found");
