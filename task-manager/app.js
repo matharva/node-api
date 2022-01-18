@@ -5,6 +5,10 @@ const app = express();
 var XRay = require("aws-xray-sdk");
 var AWS = XRay.captureAWS(require("aws-sdk"));
 
+// export AWS_ACCESS_KEY_ID=AKIA4ETSAFRDWKRCGAHU
+// export AWS_SECRET_ACCESS_KEY=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
+// export AWS_DEFAULT_REGION=ap-south-1
+
 app.use(XRay.express.openSegment("myfrontend"));
 
 XRay.config([XRay.plugins.EC2Plugin]);
