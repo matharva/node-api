@@ -1,7 +1,10 @@
 const express = require("express");
 const PORT = process.env.PORT || 8000;
 const app = express();
-const tasks = require("./routes/tasks");
+
+var AWSXRay = require("aws-xray-sdk");
+app.use(AWSXRay.express.openSegment("MyApp"));
+
 require("dotenv").config();
 const notFound = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
@@ -83,6 +86,7 @@ app.delete("/data/:id", async (req, res) => {
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);
+app.use(AWSXRay.express.closeSegment());
 
 const start = async () => {
   try {
