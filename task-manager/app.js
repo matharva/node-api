@@ -2,18 +2,9 @@ const express = require("express");
 const PORT = process.env.PORT || 8000;
 const app = express();
 
-var XRay = require("aws-xray-sdk");
-var AWS = XRay.captureAWS(require("aws-sdk"));
-
 // export AWS_ACCESS_KEY_ID=AKIA4ETSAFRDWKRCGAHU
 // export AWS_SECRET_ACCESS_KEY=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
 // export AWS_DEFAULT_REGION=ap-south-1
-
-app.use(XRay.express.openSegment("myfrontend"));
-
-XRay.config([XRay.plugins.EC2Plugin]);
-XRay.middleware.setSamplingRules("sampling-rules.json");
-XRay.middleware.enableDynamicNaming();
 
 require("dotenv").config();
 const notFound = require("./middleware/not-found");
@@ -31,6 +22,15 @@ const {
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// XRay.config([XRay.plugins.EC2Plugin]);
+// XRay.middleware.setSamplingRules("sampling-rules.json");
+// XRay.middleware.enableDynamicNaming();
+
+var XRay = require("aws-xray-sdk");
+var AWS = XRay.captureAWS(require("aws-sdk"));
+
+app.use(XRay.express.openSegment("myfrontend"));
 
 app.get("/", (req, res) => {
   res.json({
