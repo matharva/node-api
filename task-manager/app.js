@@ -2,10 +2,6 @@ const express = require("express");
 const PORT = process.env.PORT || 8000;
 const app = express();
 
-// export AWS_ACCESS_KEY_ID=AKIA4ETSAFRDWKRCGAHU
-// export AWS_SECRET_ACCESS_KEY=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
-// export AWS_DEFAULT_REGION=ap-south-1
-
 require("dotenv").config();
 const notFound = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
