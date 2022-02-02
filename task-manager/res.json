@@ -1,0 +1,101 @@
+{
+  "ResponseMetadata": {
+    "RequestId": "2d8e497a-2ca9-401c-a4a5-a73569c0d007",
+    "HTTPStatusCode": 200,
+    "HTTPHeaders": {
+      "date": "Thu, 27 Jan 2022 06:24:46 GMT",
+      "content-type": "application/json",
+      "content-length": "1846",
+      "connection": "keep-alive",
+      "x-amzn-requestid": "2d8e497a-2ca9-401c-a4a5-a73569c0d007"
+    },
+    "RetryAttempts": 0
+  },
+  "Services": [
+    {
+      "ReferenceId": 0,
+      "Name": "testing",
+      "Names": ["testing"],
+      "Type": "AWS::DynamoDB::Table",
+      "State": "unknown",
+      "Edges": [],
+      "SummaryStatistics": {
+        "OkCount": 1,
+        "ErrorStatistics": {
+          "ThrottleCount": 0,
+          "OtherCount": 0,
+          "TotalCount": 0
+        },
+        "FaultStatistics": { "OtherCount": 0, "TotalCount": 0 },
+        "TotalCount": 1,
+        "TotalResponseTime": 0.075
+      },
+      "DurationHistogram": [{ "Value": 0.075, "Count": 1 }],
+      "ResponseTimeHistogram": [{ "Value": 0.075, "Count": 1 }]
+    },
+    {
+      "ReferenceId": 1,
+      "Name": "localhost:8000",
+      "Names": ["localhost:8000"],
+      "Root": true,
+      "Type": "AWS::EC2::Instance",
+      "State": "active",
+      "Edges": [
+        {
+          "ReferenceId": 0,
+          "SummaryStatistics": {
+            "OkCount": 1,
+            "ErrorStatistics": {
+              "ThrottleCount": 0,
+              "OtherCount": 0,
+              "TotalCount": 0
+            },
+            "FaultStatistics": { "OtherCount": 0, "TotalCount": 0 },
+            "TotalCount": 1,
+            "TotalResponseTime": 0.075
+          },
+          "ResponseTimeHistogram": [{ "Value": 0.075, "Count": 1 }],
+          "Aliases": []
+        }
+      ],
+      "SummaryStatistics": {
+        "OkCount": 1,
+        "ErrorStatistics": {
+          "ThrottleCount": 0,
+          "OtherCount": 0,
+          "TotalCount": 0
+        },
+        "FaultStatistics": { "OtherCount": 0, "TotalCount": 0 },
+        "TotalCount": 1,
+        "TotalResponseTime": 0.083
+      },
+      "DurationHistogram": [{ "Value": 0.083, "Count": 1 }],
+      "ResponseTimeHistogram": [{ "Value": 0.083, "Count": 1 }]
+    },
+    {
+      "ReferenceId": 2,
+      "Name": "localhost:8000",
+      "Names": ["localhost:8000"],
+      "Type": "client",
+      "State": "unknown",
+      "Edges": [
+        {
+          "ReferenceId": 1,
+          "SummaryStatistics": {
+            "OkCount": 1,
+            "ErrorStatistics": {
+              "ThrottleCount": 0,
+              "OtherCount": 0,
+              "TotalCount": 0
+            },
+            "FaultStatistics": { "OtherCount": 0, "TotalCount": 0 },
+            "TotalCount": 1,
+            "TotalResponseTime": 0.083
+          },
+          "ResponseTimeHistogram": [{ "Value": 0.083, "Count": 1 }],
+          "Aliases": []
+        }
+      ]
+    }
+  ]
+}

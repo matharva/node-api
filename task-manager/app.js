@@ -94,11 +94,13 @@ app.use(notFound);
 app.use(errorHandlerMiddleware);
 app.use(XRay.express.closeSegment());
 
+// Change port to 6140
+
 const start = async () => {
   try {
     // await connectDB(process.env.MONGO_URI);
     app.listen(PORT, () => {
-      console.log(`Server listening at port ${PORT}...`);
+      console.log(`Server listening at port ${PORT || 6140}...`);
     });
   } catch (error) {
     console.log(error);
